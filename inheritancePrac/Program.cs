@@ -1,4 +1,5 @@
-﻿using System;
+﻿using inheritancePrac;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,26 +11,55 @@ namespace InheritancePrac
     {
         static void Main(string[] args)
         {
-            List<Dog> dogs =
-                new List<Dog>() { new Dog(), new Dog(), new Dog() };
-            List<Cat> cats = new List<Cat>();
-            cats.Add(new Cat());
-            cats.Add(new Cat());
-            cats.Add(new Cat());
+            List<Animal> animals =
+                new List<Animal>(){
+                new Dog(), new Dog(), new Cat(),
+                new Dog(), new Cat(), new Cat()
+                };
+            animals.Add(new Dog());
+            animals.Add(new Cat());
 
-            foreach (var item in dogs)
+            foreach (var item in animals)
             {
                 item.Eat();
                 item.Sleep();
-                item.Bark();
+                if( item is Dog)
+                {
+                    ((Dog)item).Bark();
+                }
+                if( item is Cat)
+                {
+                    ((Cat)item).Meow();
+                }
+
+                //as  :  is와 달리 형변환을 하지 않아도 됨
+                var dog = item as Dog;
+                if(dog != null) { dog.Bark(); }
+                var cat = item as Cat;
+                if (cat != null) { cat.Meow(); }
             }
 
-            foreach (var item in cats)
-            {
-                item.Eat();
-                item.Sleep();
-                item.Meow();
-            }
+
+            //List<Dog> dogs =
+            //    new List<Dog>() { new Dog(), new Dog(), new Dog() };
+            //List<Cat> cats = new List<Cat>();
+            //cats.Add(new Cat());
+            //cats.Add(new Cat());
+            //cats.Add(new Cat());
+
+            //foreach (var item in dogs)
+            //{
+            //    item.Eat();
+            //    item.Sleep();
+            //    item.Bark();
+            //}
+
+            //foreach (var item in cats)
+            //{
+            //    item.Eat();
+            //    item.Sleep();
+            //    item.Meow();
+            //}
         }
     }
 }
